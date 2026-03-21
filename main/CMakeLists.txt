@@ -3,6 +3,7 @@ idf_component_register(
         "jc4880p443c_demo.c"
         "dashboard_ui.c"
         "wifi_manager.c"
+        "mqtt_manager.c"
     INCLUDE_DIRS "."
     REQUIRES
         jc4880p443c
@@ -14,4 +15,5 @@ idf_component_register(
         esp_netif
         esp_event
         nvs_flash
+        mqtt
 )

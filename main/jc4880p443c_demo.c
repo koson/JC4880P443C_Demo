@@ -26,7 +26,8 @@
 #include "lvgl.h"
 #include "jc4880p443c.h"
 #include "dashboard_ui.h"
-#include "wifi_manager.h"                      /* ← NEW */
+#include "wifi_manager.h"
+#include "mqtt_manager.h"
 
 static const char *TAG = "DEMO";
 
@@ -297,6 +298,14 @@ void app_main(void)
      * The lv_timer in dashboard_ui.c polls g_wifi_state every 5 s
      * and updates the status bar from within the LVGL task safely.  */
     wifi_manager_start();
+
+    /* ── Connect to MQTT broker ─────────────────────────────────────
+     * Must be called after wifi_manager_start() (IP required).
+     * Creates g_mqtt_queue and starts the esp-mqtt client task.
+     * If the broker is unreachable the client retries in the
+     * background — the dashboard will show "MQTT --" until it
+     * connects and the status bar timer flips it to "MQTT ok".      */
+    mqtt_manager_start();
 
     ESP_LOGI(TAG, "Running — %dx%d", DISPLAY_H_RES, DISPLAY_V_RES);
 }

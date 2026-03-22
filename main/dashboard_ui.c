@@ -506,7 +506,7 @@ static void build_tiles(lv_obj_t *scr)
 static void boost_revert_cb(lv_timer_t *t)
 {
     s_boost_active = false;
-    lv_label_set_text(g_lbl_boost_btn, "Tap  \xe2\x80\x95  1 hr boost");
+    lv_label_set_text(g_lbl_boost_btn, "Tap for 1 hr boost");
     lv_obj_set_style_text_color(g_lbl_boost_btn, C_SEC, 0);
     lv_obj_clear_state(g_btn_boost, LV_STATE_DISABLED);
     lv_timer_del(t);
@@ -570,7 +570,7 @@ static void build_boiler_card(lv_obj_t *scr)
     lv_obj_add_event_cb(g_btn_boost, boost_btn_cb, LV_EVENT_CLICKED, NULL);
 
     g_lbl_boost_btn = lv_label_create(g_btn_boost);
-    lv_label_set_text(g_lbl_boost_btn, "Tap  \xe2\x80\x95  1 hr boost");
+    lv_label_set_text(g_lbl_boost_btn, "Tap  for 1 hr boost");
     lv_obj_set_style_text_font(g_lbl_boost_btn, &lv_font_montserrat_16, 0);
     lv_obj_set_style_text_color(g_lbl_boost_btn, C_SEC, 0);
     lv_obj_center(g_lbl_boost_btn);

@@ -106,6 +106,7 @@ static lv_obj_t *g_lbl_wifi;
 
 /* Weather + clock card */
 static lv_obj_t *g_lbl_time;
+static lv_obj_t *g_lbl_location;
 static lv_obj_t *g_obj_icon;
 static lv_obj_t *g_lbl_temp;
 static lv_obj_t *g_lbl_condition;
@@ -292,12 +293,18 @@ static void build_weather_card(lv_obj_t *scr)
 {
     lv_obj_t *card = make_card(scr, MARGIN, Y_WEATHER, CARD_W, H_WEATHER);
 
-    /* ── Big time ── */
+    /* ── Big time + location (right of time, vertically centred in 48px row) ── */
     g_lbl_time = lv_label_create(card);
     lv_label_set_text(g_lbl_time, "--:--");
     lv_obj_set_style_text_font(g_lbl_time, &lv_font_montserrat_48, 0);
     lv_obj_set_style_text_color(g_lbl_time, C_PRI, 0);
     lv_obj_set_pos(g_lbl_time, 16, 14);
+
+    g_lbl_location = lv_label_create(card);
+    lv_label_set_text(g_lbl_location, "---");
+    lv_obj_set_style_text_font(g_lbl_location, &lv_font_montserrat_20, 0);
+    lv_obj_set_style_text_color(g_lbl_location, C_SEC, 0);
+    lv_obj_set_pos(g_lbl_location, 160, 29);  /* right of time; y centres montserrat_20 in 48px row */
 
     make_label(card, "local time", &lv_font_montserrat_14, C_DIM, 20, 72);
 
@@ -319,15 +326,12 @@ static void build_weather_card(lv_obj_t *scr)
     lv_obj_set_style_text_color(g_lbl_temp, C_PRI, 0);
     lv_obj_set_pos(g_lbl_temp, 82, 100);
 
-    /* ── Condition + location ── */
+    /* ── Condition — right of temp hero, vertically centred in the 48px row ── */
     g_lbl_condition = lv_label_create(card);
     lv_label_set_text(g_lbl_condition, "---");
     lv_obj_set_style_text_font(g_lbl_condition, &lv_font_montserrat_20, 0);
     lv_obj_set_style_text_color(g_lbl_condition, C_SEC, 0);
-    lv_obj_set_pos(g_lbl_condition, 16, 164);
-
-    make_label(card, "High Wycombe",
-               &lv_font_montserrat_14, C_DIM, 16, 190);
+    lv_obj_set_pos(g_lbl_condition, 270, 119);  /* right of temp (x=82+~180+8); y centres in 48px row */
 
     make_hdiv(card, 16, H_WEATHER - 54, CARD_W - 32);
 
@@ -642,6 +646,12 @@ static void mqtt_drain_cb(lv_timer_t *timer)
         /* Rain */
         else if (strcmp(t, "/OWM/rain") == 0)
             dashboard_ui_update_rain(atof(p));
+
+        /* Location */
+        else if (strcmp(t, "/OWM/location") == 0) {
+            if (g_lbl_location && p && p[0])
+                lv_label_set_text(g_lbl_location, p);
+        }
     }
 }
 

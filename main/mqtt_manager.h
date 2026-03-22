@@ -33,6 +33,7 @@
  *   /OWM/sunrise_l      sunrise string  ("06:03")
  *   /OWM/sunset_l       sunset string   ("18:16")
  *   /OWM/rain           rain mm
+ *   /OWM/location       location name
  *   /HALL/watts         live power W
  *   /HALL/energy        today kWh (from midnight)
  *   /HALL/lastkwh       yesterday total kWh

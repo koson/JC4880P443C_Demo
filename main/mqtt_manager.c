@@ -67,6 +67,7 @@ static const char *SUBSCRIBE_TOPICS[] = {
     "/OWM/sunrise_l",
     "/OWM/sunset_l",
     "/OWM/rain",
+    "/OWM/location",
     "/HALL/watts",
     "/HALL/energy",
     "/HALL/lastkwh",

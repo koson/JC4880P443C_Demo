@@ -718,7 +718,8 @@ void dashboard_ui_update_status(int8_t rssi, bool mqtt_ok)
 void dashboard_ui_update_time(const char *time_str)
 {
     if (!g_lbl_time || !time_str || !time_str[0]) return;
-    lv_label_set_text(g_lbl_time, time_str);
+	const char *display = (time_str[0] == '0') ? time_str + 1 : time_str;
+	lv_label_set_text(g_lbl_time, display);
 }
 
 void dashboard_ui_update_date(const char *date_str)

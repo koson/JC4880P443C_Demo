@@ -1,5 +1,5 @@
 # ESP32-P4 Smart Home Dashboard — Design Specification
-## Version 1.1  |  Portrait 480 × 800  |  LVGL v9
+## Version 1.2  |  Portrait 480 × 800  |  LVGL v9
 
 ---
 
@@ -15,13 +15,100 @@
 
 ## 2. Architecture
 
-### Screen Model
-All pages are created once at boot as `lv_obj_t` screen objects and kept alive in RAM. No rebuilding on page switch.
+### Screen Model — Wide Canvas with Viewport (v1.2)
 
+All pages live side by side on one wide `lv_obj_t` canvas created at boot.
+The visible display is a 480px viewport sliding over a 2400px wide canvas.
+This is the same model used by the LVGL9 music player demo — finger tracking
+during swipe, snap to page boundary on release.
+
+```
+RAM layout:
+
+  canvas  2400 × 800 px  (N_PAGES × SCR_W)
+  ┌──────────┬──────────┬──────────┬──────────┬──────────┐
+  │  page 0  │  page 1  │  page 2  │  page 3  │  page 4  │
+  │   Home   │ Heating  │ Weather  │ Controls │  System  │
+  │  480×800 │  480×800 │  480×800 │  480×800 │  480×800 │
+  └──────────┴──────────┴──────────┴──────────┴──────────┘
+       ↑
+  viewport (480px wide) slides left/right over canvas
+  all widgets exist at fixed absolute X positions
+  MQTT updates all handles regardless of viewport position
+```
+
+**Key LVGL flags — the two lines that make it work:**
 ```c
-lv_obj_t *g_screens[N_PAGES];   // all created at boot
-lv_screen_load_anim(g_screens[n], LV_SCR_LOAD_ANIM_MOVE_LEFT, 200, 0, false);
-// false = do NOT delete old screen — keeps it alive in RAM
+lv_obj_add_flag(canvas, LV_OBJ_FLAG_SCROLL_ONE);
+lv_obj_set_scroll_snap_x(canvas, LV_SCROLL_SNAP_CENTER);
+```
+
+- `SCROLL_ONE` — one swipe gesture moves exactly one page, cannot fling past two
+- `SCROLL_SNAP_CENTER` — on finger release, snaps to centre of nearest page child
+
+**Behaviour during swipe:**
+```
+finger down + drag   → viewport follows finger in real time
+                        neighbouring page slides in from edge
+                        half-and-half transition visible mid-swipe
+                        (identical to LVGL9 music player demo)
+
+finger release       → snaps to nearest page centre
+                        smooth deceleration animation
+                        always lands on complete page content
+
+fast fling           → SCROLL_ONE limits to one page per gesture
+                        cannot accidentally skip pages
+```
+
+### Canvas Setup
+```c
+#define N_PAGES  5
+#define CANVAS_W (SCR_W * N_PAGES)   // 2400 px
+
+static lv_obj_t *g_canvas;
+static lv_obj_t *g_pages[N_PAGES];
+static int32_t   s_cur_page = 0;
+
+void build_canvas(lv_obj_t *scr)
+{
+    g_canvas = lv_obj_create(scr);
+    lv_obj_set_size(g_canvas, SCR_W, SCR_H);    // viewport = screen size
+    lv_obj_set_pos(g_canvas, 0, 0);
+    lv_obj_set_style_bg_color(g_canvas, C_BG, 0);
+    lv_obj_set_style_bg_opa(g_canvas, LV_OPA_COVER, 0);
+    lv_obj_set_style_pad_all(g_canvas, 0, 0);
+    lv_obj_set_style_border_width(g_canvas, 0, 0);
+
+    // scroll behaviour
+    lv_obj_set_scroll_dir(g_canvas, LV_DIR_HOR);
+    lv_obj_set_scrollbar_mode(g_canvas, LV_SCROLLBAR_MODE_OFF);
+    lv_obj_add_flag(g_canvas, LV_OBJ_FLAG_SCROLL_ONE);
+    lv_obj_set_scroll_snap_x(g_canvas, LV_SCROLL_SNAP_CENTER);
+
+    // create page children at fixed X positions
+    for (int i = 0; i < N_PAGES; i++) {
+        g_pages[i] = lv_obj_create(g_canvas);
+        lv_obj_set_size(g_pages[i], SCR_W, SCR_H);
+        lv_obj_set_pos(g_pages[i], i * SCR_W, 0);
+        lv_obj_set_style_bg_color(g_pages[i], C_BG, 0);
+        lv_obj_set_style_bg_opa(g_pages[i], LV_OPA_COVER, 0);
+        lv_obj_set_style_pad_all(g_pages[i], 0, 0);
+        lv_obj_set_style_border_width(g_pages[i], 0, 0);
+        lv_obj_clear_flag(g_pages[i], LV_OBJ_FLAG_SCROLLABLE);
+    }
+
+    // page-change event — update dot indicator
+    lv_obj_add_event_cb(g_canvas, on_scroll_end, LV_EVENT_SCROLL_END, NULL);
+}
+
+static void on_scroll_end(lv_event_t *e)
+{
+    lv_obj_t *canvas = lv_event_get_target(e);
+    int32_t x = lv_obj_get_scroll_x(canvas);
+    s_cur_page = LV_CLAMP(0, (x + SCR_W / 2) / SCR_W, N_PAGES - 1);
+    update_page_dots(s_cur_page);
+}
 ```
 
 ### MQTT → UI Data Flow
@@ -34,34 +121,25 @@ mqtt_drain_cb()                      ← LVGL task, drains queue completely
     ↓  dispatch by topic string
 dashboard_ui_update_*()              ← updates widget handles directly
     ↓
-widget handles (g_lbl_*, g_tile_*)   ← exist permanently in RAM
-                                     ← updated whether screen visible or not
+widget handles (g_lbl_*, g_tile_*)   ← exist at fixed positions on canvas
+                                     ← updated whether in viewport or not
 ```
 
 - No mutexes needed — queue is the only crossing point between domains
 - All UI updates happen inside LVGL task — thread safe by design
-- Off-screen widgets update silently — page shows fresh data instantly on swipe
+- Off-viewport widgets update silently — page shows fresh data instantly on swipe
+- No gesture detection code needed — LVGL scroll engine handles everything
 
-### Page Navigation
-```c
-#define N_PAGES 5
-
-void dashboard_go_to_page(int direction)  // +1 next, -1 prev
-{
-    if (s_anim_in_progress) return;       // debounce guard
-    s_anim_in_progress = true;
-    s_cur_page = (s_cur_page + N_PAGES + direction) % N_PAGES;
-    lv_screen_load_anim(g_screens[s_cur_page],
-        direction > 0 ? LV_SCR_LOAD_ANIM_MOVE_LEFT
-                      : LV_SCR_LOAD_ANIM_MOVE_RIGHT,
-        200, 0, false);
-    lv_timer_create(anim_done_cb, 200, NULL);  // clears flag after 200ms
-    update_page_dots(s_cur_page);
-}
+### Comparison: Old Model vs New Model
 ```
-
-Touch swipe detected via `lv_indev_get_gesture_dir()` in touch read callback.
-Gesture threshold: `lv_indev_set_gesture_limit(indev, 20)` px.
+Old (v1.1)                          New (v1.2)
+────────────────────────────────────────────────────────────
+5 × lv_obj_create(NULL) screens     5 × lv_obj_create(canvas) pages
+lv_screen_load_anim()               LVGL scroll engine (automatic)
+lv_indev gesture detection          not needed
+manual debounce guard               not needed — SCROLL_ONE handles it
+discrete jump between pages         fluid finger-tracked pan + snap
+```
 
 ---
 
@@ -652,23 +730,21 @@ lv_obj_set_style_size(chart, 0, LV_PART_INDICATOR);  // line only, no dots
 ```c
 void dashboard_ui_create(lv_display_t *disp)
 {
-    // 1. Create all screens
-    for (int i = 0; i < N_PAGES; i++) {
-        g_screens[i] = lv_obj_create(NULL);
-        lv_obj_set_style_bg_color(g_screens[i], C_BG, 0);
-        lv_obj_set_style_bg_opa(g_screens[i], LV_OPA_COVER, 0);
-        lv_obj_clear_flag(g_screens[i], LV_OBJ_FLAG_SCROLLABLE);
-    }
+    lv_obj_t *scr = lv_display_get_screen_active(disp);
+    lv_obj_set_style_bg_color(scr, C_BG, 0);
 
-    // 2. Build all pages — all widget handles assigned before any MQTT arrives
-    build_home_page(g_screens[0]);
-    build_heating_page(g_screens[1]);
-    build_weather_page(g_screens[2]);
-    build_controls_page(g_screens[3]);
-    build_system_page(g_screens[4]);
+    // 1. Create wide canvas + all page children
+    build_canvas(scr);           // sets up g_canvas and g_pages[0..4]
 
-    // 3. Show first screen
-    lv_screen_load(g_screens[0]);
+    // 2. Build all page content — all widget handles assigned before any MQTT arrives
+    build_home_page(g_pages[0]);
+    build_heating_page(g_pages[1]);
+    build_weather_page(g_pages[2]);
+    build_controls_page(g_pages[3]);
+    build_system_page(g_pages[4]);
+
+    // 3. Scroll to first page (no animation at boot)
+    lv_obj_scroll_to_x(g_canvas, 0, LV_ANIM_OFF);
 
     // 4. Start timers AFTER all handles exist
     lv_timer_create(mqtt_drain_cb,  100,  NULL);
@@ -692,26 +768,35 @@ void dashboard_ui_create(lv_display_t *disp)
 
 6. **Correct by construction** — MQTT queue is the only crossing point between async MQTT domain and synchronous LVGL domain. No mutexes needed. Actor model / Erlang philosophy.
 
-7. **All in RAM** — no page rebuilding. Off-screen widgets update silently. Instant display on swipe. Works because ESP32-P4 has sufficient RAM.
+7. **Wide canvas viewport** — all pages side by side on one 2400×800 canvas. Viewport (480px) slides over it. Finger-tracked during swipe, snaps to page on release. Identical to LVGL9 music player demo. No gesture detection code needed — LVGL scroll engine handles everything natively.
 
 8. **Theme as single source of truth** — dashboard_theme.h contains all colours, fonts, layout constants, and threshold helper functions. New pages just `#include "dashboard_theme.h"`.
+
+9. **Empathy drives hierarchy** — every layout decision starts from "what does the person standing here need to know first?" Not what data is available, but what is useful at this moment, at this distance. Progressive disclosure is the answer: colour from 3 metres, numbers at arm's length, detail on demand.
 
 ---
 
 ## 13. Files Produced So Far
 
-| File                     | Purpose                                      |
-|--------------------------|----------------------------------------------|
-| `dashboard_ui.h`         | Original public API (uploaded)               |
-| `dashboard_ui.c`         | Original implementation (uploaded)           |
-| `dashboard_theme.h`      | Extracted design system — all pages use this |
-| `dashboard_design_spec.md` | This document                              |
+| File                       | Purpose                                      |
+|----------------------------|----------------------------------------------|
+| `dashboard_ui.h`           | Original public API (uploaded)               |
+| `dashboard_ui.c`           | Original implementation (uploaded)           |
+| `dashboard_theme.h`        | Extracted design system — all pages use this |
+| `dashboard_design_spec.md` | This document                                |
 
 ### Next Step: Skeleton Code
-Five screens, placeholder content, real LVGL, real fonts, real theme colours.
-Static/fake data — no MQTT yet. Run on hardware to verify layout before wiring data.
+Wide canvas + five page children, placeholder content, real LVGL, real fonts, real theme colours.
+Static/fake data — no MQTT yet. Run on hardware to verify scroll feel and layout before wiring data.
+Get `SCROLL_ONE` + `SCROLL_SNAP_CENTER` feeling right first — that is the veroboard moment.
 
 ---
+
+*v1.2 — Architecture revised: replaced 5 × lv_screen model with single wide canvas (2400×800)
+viewport model. Pages are children at fixed X positions. LVGL scroll engine handles finger
+tracking and snap natively via LV_OBJ_FLAG_SCROLL_ONE + LV_SCROLL_SNAP_CENTER.
+No gesture detection code required. Matches LVGL9 music player demo pattern.
+Boot sequence updated. Design principle 7 updated, principle 9 added (empathy).*
 
 *v1.1 — Added 5-day forecast strip to Page 2 (Weather): layout, icon rules, Node-RED pipeline,
 summarisation function node, and MQTT topic map for `/OWM/fc/*` topics.*

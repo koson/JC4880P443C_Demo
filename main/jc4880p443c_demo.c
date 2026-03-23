@@ -18,6 +18,8 @@
 #include "esp_check.h"
 #include "driver/gpio.h"
 #include "driver/ledc.h"
+#include "driver/i2c_master.h"
+#include "esp_lcd_touch_gt911.h"
 #include "esp_lcd_panel_ops.h"
 #include "esp_lcd_panel_io.h"
 #include "esp_lcd_mipi_dsi.h"
@@ -38,6 +40,14 @@ uint16_t DISPLAY_H_RES, DISPLAY_V_RES;
 #define PIN_LCD_BACKLIGHT            (GPIO_NUM_23)
 #define PIN_MIPI_PHY_PWR_LDO_CHAN    (3)
 #define PIN_MIPI_PHY_PWR_VOLTAGE_MV  (2500)
+
+// Touch pins
+#define PIN_TOUCH_SCL                (GPIO_NUM_8)
+#define PIN_TOUCH_SDA                (GPIO_NUM_7)
+#define PIN_TOUCH_RST                (GPIO_NUM_35)
+#define PIN_TOUCH_INT                (GPIO_NUM_3)
+#define TOUCH_I2C_PORT               (I2C_NUM_0)
+#define TOUCH_I2C_FREQ_HZ            (400000)
 
 #define BACKLIGHT_LEDC_CH            (0)
 #define BACKLIGHT_LEDC_TIMER         (LEDC_TIMER_1)
@@ -193,6 +203,52 @@ err:
     return ret;
 }
 
+/* ── Touch init (GT911 over I2C) ─────────────────────────────────── */
+static esp_err_t touch_init(esp_lcd_touch_handle_t *ret_tp)
+{
+    ESP_LOGI(TAG, "Initializing GT911 touch controller");
+
+    i2c_master_bus_config_t i2c_bus_cfg = {
+        .i2c_port          = TOUCH_I2C_PORT,
+        .sda_io_num        = PIN_TOUCH_SDA,
+        .scl_io_num        = PIN_TOUCH_SCL,
+        .clk_source        = I2C_CLK_SRC_DEFAULT,
+        .glitch_ignore_cnt = 7,
+        .flags.enable_internal_pullup = true,
+    };
+    i2c_master_bus_handle_t i2c_bus;
+    ESP_RETURN_ON_ERROR(i2c_new_master_bus(&i2c_bus_cfg, &i2c_bus),
+                        TAG, "I2C master bus creation failed");
+
+    esp_lcd_panel_io_handle_t tp_io;
+    esp_lcd_panel_io_i2c_config_t tp_io_cfg = ESP_LCD_TOUCH_IO_I2C_GT911_CONFIG();
+    tp_io_cfg.scl_speed_hz = TOUCH_I2C_FREQ_HZ;  // required by IDF 5.x i2c_master driver
+    ESP_RETURN_ON_ERROR(esp_lcd_new_panel_io_i2c(i2c_bus, &tp_io_cfg, &tp_io),
+                        TAG, "Touch panel IO creation failed");
+
+    esp_lcd_touch_io_gt911_config_t gt911_cfg = {
+        .dev_addr = ESP_LCD_TOUCH_IO_I2C_GT911_ADDRESS,  // 0x5D
+    };
+
+    esp_lcd_touch_config_t tp_cfg = {
+        .x_max        = DISPLAY_H_RES,
+        .y_max        = DISPLAY_V_RES,
+        .rst_gpio_num = PIN_TOUCH_RST,
+        .int_gpio_num = PIN_TOUCH_INT,
+        .levels   = { .reset = 0, .interrupt = 0 },
+        .flags    = { .swap_xy = 0, .mirror_x = 0, .mirror_y = 0 },
+        .driver_data = &gt911_cfg,
+    };
+
+    esp_lcd_touch_handle_t tp;
+    ESP_RETURN_ON_ERROR(esp_lcd_touch_new_i2c_gt911(tp_io, &tp_cfg, &tp),
+                        TAG, "GT911 driver creation failed");
+
+    *ret_tp = tp;
+    ESP_LOGI(TAG, "GT911 touch initialized (SDA=%d SCL=%d)", PIN_TOUCH_SDA, PIN_TOUCH_SCL);
+    return ESP_OK;
+}
+
 /* ── LVGL port (unchanged except stack size above) ───────────────────── */
 static void lvgl_tick_cb(void *arg)       { lv_tick_inc(LVGL_TICK_PERIOD_MS); }
 
@@ -213,6 +269,33 @@ static void lvgl_flush_cb(lv_display_t *disp, const lv_area_t *area,
                               area->x1, area->y1,
                               area->x2 + 1, area->y2 + 1, px_map);
     lv_display_flush_ready(disp);
+}
+
+static void lvgl_touch_read_cb(lv_indev_t *indev, lv_indev_data_t *data)
+{
+    esp_lcd_touch_handle_t tp = lv_indev_get_user_data(indev);
+    esp_lcd_touch_read_data(tp);
+
+    esp_lcd_touch_point_data_t point;
+    uint8_t point_cnt = 0;
+    esp_lcd_touch_get_data(tp, &point, &point_cnt, 1);
+
+    if (point_cnt > 0) {
+        data->point.x = point.x;
+        data->point.y = point.y;
+        data->state   = LV_INDEV_STATE_PRESSED;
+    } else {
+        data->state   = LV_INDEV_STATE_RELEASED;
+    }
+}
+
+static void lvgl_touch_register(esp_lcd_touch_handle_t tp)
+{
+    lv_indev_t *indev = lv_indev_create();
+    lv_indev_set_type(indev, LV_INDEV_TYPE_POINTER);
+    lv_indev_set_read_cb(indev, lvgl_touch_read_cb);
+    lv_indev_set_user_data(indev, tp);
+    ESP_LOGI(TAG, "Touch registered as LVGL input device");
 }
 
 static void lvgl_task(void *arg)
@@ -268,6 +351,19 @@ void app_main(void)
 
     lv_display_t *disp = lvgl_display_init(panel);
     assert(disp);
+
+    /* ── Touch ──────────────────────────────────────────────────────
+     * Initialised after display so DISPLAY_H_RES/V_RES are set.
+     * Non-fatal: if the GT911 isn't wired yet the dashboard still
+     * runs — you'll just see a warning in the log.                   */
+    esp_lcd_touch_handle_t tp = NULL;
+    esp_err_t touch_ret = touch_init(&tp);
+    if (touch_ret == ESP_OK) {
+        lvgl_touch_register(tp);
+    } else {
+        ESP_LOGW(TAG, "Touch init failed (%s) — display-only mode",
+                 esp_err_to_name(touch_ret));
+    }
 
     /* ── Build the dashboard ────────────────────────────────────────
      * Single call. All widget creation happens inside dashboard_ui.c.

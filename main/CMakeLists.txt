@@ -9,7 +9,10 @@ idf_component_register(
         jc4880p443c
         lvgl
         esp_lcd_st7701
+        esp_lcd_touch
+        esp_lcd_touch_gt911
         esp_timer
+        driver
     PRIV_REQUIRES
         esp_wifi
         esp_netif

@@ -9,7 +9,7 @@
 - **Framework**: LVGL v9, FreeRTOS
 - **Data source**: MQTT via mosquitto broker at 192.168.124.4
 - **Middleware**: Node-RED bridges OpenWeatherMap and MQTT
-- **Touch**: To be added — swipe gesture for page navigation
+- **Touch**: GT991,  swipe gesture for page navigation
 
 ---
 

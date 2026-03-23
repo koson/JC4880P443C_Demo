@@ -1,0 +1,229 @@
+<svg width="100%" viewBox="0 0 680 930" xmlns="http://www.w3.org/2000/svg">
+
+<!-- device frame -->
+<rect x="160" y="0" width="360" height="920" rx="18" fill="#0F1117" style="fill:rgb(15, 17, 23);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+<!-- ═══ STATUS BAR ═══ -->
+<rect x="160" y="0" width="360" height="30" rx="18" fill="#1A1D27" style="fill:rgb(26, 29, 39);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+<rect x="160" y="14" width="360" height="16" fill="#1A1D27" style="fill:rgb(26, 29, 39);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+<text x="178" y="20" font-family="monospace" font-size="13" fill="#9094AB" style="fill:rgb(144, 148, 171);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:monospace;font-size:13px;font-weight:400;text-anchor:start;dominant-baseline:auto">Saturday 21 March</text>
+<circle cx="440" cy="15" r="5" fill="#2ECC8E" style="fill:rgb(46, 204, 142);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+<text x="450" y="20" font-family="monospace" font-size="11" fill="#2ECC8E" style="fill:rgb(46, 204, 142);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:monospace;font-size:11px;font-weight:400;text-anchor:start;dominant-baseline:auto">MQTT</text>
+<circle cx="502" cy="15" r="5" fill="#2ECC8E" style="fill:rgb(46, 204, 142);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+<text x="512" y="20" font-family="monospace" font-size="11" fill="#2ECC8E" style="fill:rgb(46, 204, 142);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:monospace;font-size:11px;font-weight:400;text-anchor:start;dominant-baseline:auto">WiFi</text>
+
+<!-- ═══ HERO CARD  Y=38 H=240 ═══ -->
+<rect x="172" y="38" width="336" height="240" rx="12" fill="#1A1D27" stroke="#2A2E42" stroke-width="1" style="fill:rgb(26, 29, 39);stroke:rgb(42, 46, 66);color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+<!-- location -->
+<text x="340" y="62" font-family="monospace" font-size="13" fill="#4A4F65" text-anchor="middle" style="fill:rgb(74, 79, 101);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:monospace;font-size:13px;font-weight:400;text-anchor:middle;dominant-baseline:auto">High Wycombe</text>
+
+<!-- big icon placeholder — cloud circle -->
+<circle cx="232" cy="148" r="52" fill="#22263A" stroke="#2A2E42" stroke-width="1" style="fill:rgb(34, 38, 58);stroke:rgb(42, 46, 66);color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+<!-- cloud shape suggestion -->
+<ellipse cx="232" cy="155" rx="28" ry="18" fill="#9094AB" opacity="0.6" style="fill:rgb(144, 148, 171);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.6;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+<ellipse cx="218" cy="148" rx="18" ry="18" fill="#9094AB" opacity="0.6" style="fill:rgb(144, 148, 171);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.6;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+<ellipse cx="246" cy="146" rx="16" ry="16" fill="#9094AB" opacity="0.6" style="fill:rgb(144, 148, 171);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.6;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+<text x="232" y="210" font-family="monospace" font-size="11" fill="#4A4F65" text-anchor="middle" style="fill:rgb(74, 79, 101);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:monospace;font-size:11px;font-weight:400;text-anchor:middle;dominant-baseline:auto">hi-res icon</text>
+
+<!-- temp hero -->
+<text x="390" y="130" font-family="monospace" font-size="62" fill="#F0F0F5" font-weight="400" text-anchor="middle" letter-spacing="-1" style="fill:rgb(240, 240, 245);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:monospace;font-size:62px;font-weight:400;text-anchor:middle;dominant-baseline:auto">9.5°</text>
+
+<!-- condition -->
+<text x="390" y="158" font-family="monospace" font-size="16" fill="#9094AB" text-anchor="middle" style="fill:rgb(144, 148, 171);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:monospace;font-size:16px;font-weight:400;text-anchor:middle;dominant-baseline:auto">Overcast clouds</text>
+
+<!-- divider -->
+<rect x="188" y="172" width="310" height="1" fill="#2A2E42" style="fill:rgb(42, 46, 66);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+<!-- min max sunrise sunset row -->
+<text x="196" y="196" font-family="monospace" font-size="14" fill="#4A4F65" style="fill:rgb(74, 79, 101);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:monospace;font-size:14px;font-weight:400;text-anchor:start;dominant-baseline:auto">↓ 8.9°</text>
+<text x="254" y="196" font-family="monospace" font-size="14" fill="#4A4F65" style="fill:rgb(74, 79, 101);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:monospace;font-size:14px;font-weight:400;text-anchor:start;dominant-baseline:auto">↑ 10.9°</text>
+<text x="340" y="196" font-family="monospace" font-size="14" fill="#E8C44A" text-anchor="middle" style="fill:rgb(232, 196, 74);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:monospace;font-size:14px;font-weight:400;text-anchor:middle;dominant-baseline:auto">☀ 06:01</text>
+<text x="430" y="196" font-family="monospace" font-size="14" fill="#E8834A" text-anchor="middle" style="fill:rgb(232, 131, 74);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:monospace;font-size:14px;font-weight:400;text-anchor:middle;dominant-baseline:auto">● 18:18</text>
+
+<!-- feels like -->
+<text x="340" y="218" font-family="monospace" font-size="13" fill="#4A4F65" text-anchor="middle" style="fill:rgb(74, 79, 101);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:monospace;font-size:13px;font-weight:400;text-anchor:middle;dominant-baseline:auto">feels like  7.2°  ·  pressure  1017 hPa</text>
+
+<!-- ═══ 24HR FORECAST STRIP  Y=290 H=150 ═══ -->
+<rect x="172" y="288" width="336" height="152" rx="12" fill="#1A1D27" stroke="#2A2E42" stroke-width="1" style="fill:rgb(26, 29, 39);stroke:rgb(42, 46, 66);color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+<text x="188" y="310" font-family="monospace" font-size="13" fill="#4A4F65" style="fill:rgb(74, 79, 101);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:monospace;font-size:13px;font-weight:400;text-anchor:start;dominant-baseline:auto">next 24 hours</text>
+
+<!-- 8 forecast slots — 3hr intervals -->
+<!-- slot width = 336/8 = 42px each -->
+
+<!-- NOW -->
+<text x="193" y="332" font-family="monospace" font-size="10" fill="#9094AB" text-anchor="middle" style="fill:rgb(144, 148, 171);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:monospace;font-size:10px;font-weight:400;text-anchor:middle;dominant-baseline:auto">now</text>
+<circle cx="193" cy="352" r="10" fill="#9094AB" opacity="0.4" style="fill:rgb(144, 148, 171);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.4;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+<text x="193" y="380" font-family="monospace" font-size="12" fill="#F0F0F5" text-anchor="middle" style="fill:rgb(240, 240, 245);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:monospace;font-size:12px;font-weight:400;text-anchor:middle;dominant-baseline:auto">9°</text>
+<text x="193" y="396" font-family="monospace" font-size="10" fill="#4A4F65" text-anchor="middle" style="fill:rgb(74, 79, 101);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:monospace;font-size:10px;font-weight:400;text-anchor:middle;dominant-baseline:auto">cloud</text>
+
+<!-- +3hr -->
+<text x="235" y="332" font-family="monospace" font-size="10" fill="#4A4F65" text-anchor="middle" style="fill:rgb(74, 79, 101);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:monospace;font-size:10px;font-weight:400;text-anchor:middle;dominant-baseline:auto">21:00</text>
+<circle cx="235" cy="352" r="10" fill="#9094AB" opacity="0.4" style="fill:rgb(144, 148, 171);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.4;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+<text x="235" y="380" font-family="monospace" font-size="12" fill="#F0F0F5" text-anchor="middle" style="fill:rgb(240, 240, 245);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:monospace;font-size:12px;font-weight:400;text-anchor:middle;dominant-baseline:auto">8°</text>
+<text x="235" y="396" font-family="monospace" font-size="10" fill="#4A4F65" text-anchor="middle" style="fill:rgb(74, 79, 101);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:monospace;font-size:10px;font-weight:400;text-anchor:middle;dominant-baseline:auto">cloud</text>
+
+<!-- +6hr -->
+<text x="277" y="332" font-family="monospace" font-size="10" fill="#4A4F65" text-anchor="middle" style="fill:rgb(74, 79, 101);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:monospace;font-size:10px;font-weight:400;text-anchor:middle;dominant-baseline:auto">00:00</text>
+<circle cx="277" cy="352" r="10" fill="#4A90D9" opacity="0.5" style="fill:rgb(74, 144, 217);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.5;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+<text x="277" y="380" font-family="monospace" font-size="12" fill="#F0F0F5" text-anchor="middle" style="fill:rgb(240, 240, 245);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:monospace;font-size:12px;font-weight:400;text-anchor:middle;dominant-baseline:auto">6°</text>
+<text x="277" y="396" font-family="monospace" font-size="10" fill="#4A90D9" text-anchor="middle" style="fill:rgb(74, 144, 217);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:monospace;font-size:10px;font-weight:400;text-anchor:middle;dominant-baseline:auto">rain</text>
+
+<!-- +9hr -->
+<text x="319" y="332" font-family="monospace" font-size="10" fill="#4A4F65" text-anchor="middle" style="fill:rgb(74, 79, 101);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:monospace;font-size:10px;font-weight:400;text-anchor:middle;dominant-baseline:auto">03:00</text>
+<circle cx="319" cy="352" r="10" fill="#4A90D9" opacity="0.5" style="fill:rgb(74, 144, 217);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.5;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+<text x="319" y="380" font-family="monospace" font-size="12" fill="#F0F0F5" text-anchor="middle" style="fill:rgb(240, 240, 245);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:monospace;font-size:12px;font-weight:400;text-anchor:middle;dominant-baseline:auto">5°</text>
+<text x="319" y="396" font-family="monospace" font-size="10" fill="#4A90D9" text-anchor="middle" style="fill:rgb(74, 144, 217);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:monospace;font-size:10px;font-weight:400;text-anchor:middle;dominant-baseline:auto">rain</text>
+
+<!-- +12hr -->
+<text x="361" y="332" font-family="monospace" font-size="10" fill="#4A4F65" text-anchor="middle" style="fill:rgb(74, 79, 101);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:monospace;font-size:10px;font-weight:400;text-anchor:middle;dominant-baseline:auto">06:00</text>
+<circle cx="361" cy="352" r="10" fill="#4A90D9" opacity="0.4" style="fill:rgb(74, 144, 217);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.4;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+<text x="361" y="380" font-family="monospace" font-size="12" fill="#F0F0F5" text-anchor="middle" style="fill:rgb(240, 240, 245);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:monospace;font-size:12px;font-weight:400;text-anchor:middle;dominant-baseline:auto">5°</text>
+<text x="361" y="396" font-family="monospace" font-size="10" fill="#4A90D9" text-anchor="middle" style="fill:rgb(74, 144, 217);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:monospace;font-size:10px;font-weight:400;text-anchor:middle;dominant-baseline:auto">drizzle</text>
+
+<!-- +15hr -->
+<text x="403" y="332" font-family="monospace" font-size="10" fill="#4A4F65" text-anchor="middle" style="fill:rgb(74, 79, 101);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:monospace;font-size:10px;font-weight:400;text-anchor:middle;dominant-baseline:auto">09:00</text>
+<circle cx="403" cy="352" r="10" fill="#9094AB" opacity="0.4" style="fill:rgb(144, 148, 171);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.4;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+<text x="403" y="380" font-family="monospace" font-size="12" fill="#F0F0F5" text-anchor="middle" style="fill:rgb(240, 240, 245);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:monospace;font-size:12px;font-weight:400;text-anchor:middle;dominant-baseline:auto">7°</text>
+<text x="403" y="396" font-family="monospace" font-size="10" fill="#4A4F65" text-anchor="middle" style="fill:rgb(74, 79, 101);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:monospace;font-size:10px;font-weight:400;text-anchor:middle;dominant-baseline:auto">cloud</text>
+
+<!-- +18hr -->
+<text x="445" y="332" font-family="monospace" font-size="10" fill="#4A4F65" text-anchor="middle" style="fill:rgb(74, 79, 101);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:monospace;font-size:10px;font-weight:400;text-anchor:middle;dominant-baseline:auto">12:00</text>
+<circle cx="445" cy="352" r="10" fill="#E8C44A" opacity="0.5" style="fill:rgb(232, 196, 74);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.5;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+<text x="445" y="380" font-family="monospace" font-size="12" fill="#F0F0F5" text-anchor="middle" style="fill:rgb(240, 240, 245);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:monospace;font-size:12px;font-weight:400;text-anchor:middle;dominant-baseline:auto">10°</text>
+<text x="445" y="396" font-family="monospace" font-size="10" fill="#E8C44A" text-anchor="middle" style="fill:rgb(232, 196, 74);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:monospace;font-size:10px;font-weight:400;text-anchor:middle;dominant-baseline:auto">clear</text>
+
+<!-- +21hr -->
+<text x="487" y="332" font-family="monospace" font-size="10" fill="#4A4F65" text-anchor="middle" style="fill:rgb(74, 79, 101);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:monospace;font-size:10px;font-weight:400;text-anchor:middle;dominant-baseline:auto">15:00</text>
+<circle cx="487" cy="352" r="10" fill="#E8C44A" opacity="0.4" style="fill:rgb(232, 196, 74);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.4;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+<text x="487" y="380" font-family="monospace" font-size="12" fill="#F0F0F5" text-anchor="middle" style="fill:rgb(240, 240, 245);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:monospace;font-size:12px;font-weight:400;text-anchor:middle;dominant-baseline:auto">9°</text>
+<text x="487" y="396" font-family="monospace" font-size="10" fill="#E8C44A" text-anchor="middle" style="fill:rgb(232, 196, 74);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:monospace;font-size:10px;font-weight:400;text-anchor:middle;dominant-baseline:auto">clear</text>
+
+<!-- temp trend line connecting dots -->
+<polyline points="193,342 235,344 277,350 319,354 361,352 403,346 445,340 487,342" fill="none" stroke="#4A4F65" stroke-width="1" stroke-dasharray="3 2" opacity="0.5" style="fill:none;stroke:rgb(74, 79, 101);color:rgb(0, 0, 0);stroke-width:1px;stroke-dasharray:3px, 2px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.5;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+<!-- ═══ STAT GRID  Y=452 H=190 ═══ -->
+<rect x="172" y="452" width="336" height="190" rx="12" fill="#1A1D27" stroke="#2A2E42" stroke-width="1" style="fill:rgb(26, 29, 39);stroke:rgb(42, 46, 66);color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+<!-- 2x3 grid of stats -->
+<!-- row 1 -->
+<text x="212" y="482" font-family="monospace" font-size="12" fill="#4A4F65" text-anchor="middle" style="fill:rgb(74, 79, 101);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:monospace;font-size:12px;font-weight:400;text-anchor:middle;dominant-baseline:auto">humidity</text>
+<text x="212" y="506" font-family="monospace" font-size="22" fill="#F0F0F5" text-anchor="middle" style="fill:rgb(240, 240, 245);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:monospace;font-size:22px;font-weight:400;text-anchor:middle;dominant-baseline:auto">67%</text>
+
+<rect x="328" y="462" width="1" height="60" fill="#2A2E42" style="fill:rgb(42, 46, 66);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+<text x="388" y="482" font-family="monospace" font-size="12" fill="#4A4F65" text-anchor="middle" style="fill:rgb(74, 79, 101);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:monospace;font-size:12px;font-weight:400;text-anchor:middle;dominant-baseline:auto">pressure</text>
+<text x="388" y="506" font-family="monospace" font-size="22" fill="#F0F0F5" text-anchor="middle" style="fill:rgb(240, 240, 245);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:monospace;font-size:22px;font-weight:400;text-anchor:middle;dominant-baseline:auto">1017</text>
+<text x="388" y="522" font-family="monospace" font-size="11" fill="#4A4F65" text-anchor="middle" style="fill:rgb(74, 79, 101);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:monospace;font-size:11px;font-weight:400;text-anchor:middle;dominant-baseline:auto">hPa</text>
+
+<!-- row divider -->
+<rect x="188" y="534" width="310" height="1" fill="#2A2E42" style="fill:rgb(42, 46, 66);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+<!-- row 2 -->
+<text x="212" y="558" font-family="monospace" font-size="12" fill="#4A4F65" text-anchor="middle" style="fill:rgb(74, 79, 101);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:monospace;font-size:12px;font-weight:400;text-anchor:middle;dominant-baseline:auto">wind</text>
+<text x="212" y="582" font-family="monospace" font-size="22" fill="#F0F0F5" text-anchor="middle" style="fill:rgb(240, 240, 245);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:monospace;font-size:22px;font-weight:400;text-anchor:middle;dominant-baseline:auto">2.1</text>
+<text x="212" y="598" font-family="monospace" font-size="11" fill="#4A4F65" text-anchor="middle" style="fill:rgb(74, 79, 101);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:monospace;font-size:11px;font-weight:400;text-anchor:middle;dominant-baseline:auto">m/s  N</text>
+
+<rect x="328" y="538" width="1" height="60" fill="#2A2E42" style="fill:rgb(42, 46, 66);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+<text x="388" y="558" font-family="monospace" font-size="12" fill="#4A4F65" text-anchor="middle" style="fill:rgb(74, 79, 101);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:monospace;font-size:12px;font-weight:400;text-anchor:middle;dominant-baseline:auto">rain</text>
+<text x="388" y="582" font-family="monospace" font-size="22" fill="#4A90D9" text-anchor="middle" style="fill:rgb(74, 144, 217);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:monospace;font-size:22px;font-weight:400;text-anchor:middle;dominant-baseline:auto">0.13</text>
+<text x="388" y="598" font-family="monospace" font-size="11" fill="#4A90D9" text-anchor="middle" style="fill:rgb(74, 144, 217);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:monospace;font-size:11px;font-weight:400;text-anchor:middle;dominant-baseline:auto">mm</text>
+
+<!-- row divider -->
+<rect x="188" y="610" width="310" height="1" fill="#2A2E42" style="fill:rgb(42, 46, 66);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+<!-- row 3 -->
+<text x="212" y="634" font-family="monospace" font-size="12" fill="#4A4F65" text-anchor="middle" style="fill:rgb(74, 79, 101);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:monospace;font-size:12px;font-weight:400;text-anchor:middle;dominant-baseline:auto">sunrise</text>
+<text x="212" y="658" font-family="monospace" font-size="22" fill="#E8C44A" text-anchor="middle" style="fill:rgb(232, 196, 74);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:monospace;font-size:22px;font-weight:400;text-anchor:middle;dominant-baseline:auto">06:01</text>
+
+<rect x="328" y="614" width="1" height="60" fill="#2A2E42" style="fill:rgb(42, 46, 66);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+<text x="388" y="634" font-family="monospace" font-size="12" fill="#4A4F65" text-anchor="middle" style="fill:rgb(74, 79, 101);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:monospace;font-size:12px;font-weight:400;text-anchor:middle;dominant-baseline:auto">sunset</text>
+<text x="388" y="658" font-family="monospace" font-size="22" fill="#E8834A" text-anchor="middle" style="fill:rgb(232, 131, 74);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:monospace;font-size:22px;font-weight:400;text-anchor:middle;dominant-baseline:auto">18:18</text>
+
+<!-- ═══ 5-DAY FORECAST  Y=678 H=148 ═══ -->
+<rect x="172" y="678" width="336" height="148" rx="12" fill="#1A1D27" stroke="#2A2E42" stroke-width="1"/>
+<text x="188" y="698" font-family="monospace" font-size="11" fill="#4A4F65">5-day forecast</text>
+<rect x="188" y="704" width="304" height="1" fill="#2A2E42"/>
+
+<!-- col width = 336/5 = 67px, centres at 206, 273, 340, 407, 474 -->
+
+<!-- MON -->
+<text x="206" y="720" font-family="monospace" font-size="10" fill="#4A4F65" text-anchor="middle">Mon 24</text>
+<ellipse cx="206" cy="748" rx="14" ry="9" fill="#9094AB" opacity="0.45"/>
+<ellipse cx="196" cy="744" rx="9" ry="9" fill="#9094AB" opacity="0.45"/>
+<ellipse cx="216" cy="743" rx="8" ry="8" fill="#9094AB" opacity="0.45"/>
+<text x="197" y="768" font-family="monospace" font-size="10" fill="#4A4F65" text-anchor="middle">↓7°</text>
+<text x="216" y="768" font-family="monospace" font-size="10" fill="#9094AB" text-anchor="middle">↑13°</text>
+<text x="206" y="782" font-family="monospace" font-size="9" fill="#4A4F65" text-anchor="middle">overcast</text>
+
+<!-- col divider -->
+<rect x="239" y="710" width="1" height="106" fill="#2A2E42"/>
+
+<!-- TUE -->
+<text x="273" y="720" font-family="monospace" font-size="10" fill="#4A4F65" text-anchor="middle">Tue 25</text>
+<ellipse cx="273" cy="746" rx="14" ry="9" fill="#4A90D9" opacity="0.45"/>
+<ellipse cx="263" cy="742" rx="9" ry="9" fill="#4A90D9" opacity="0.45"/>
+<ellipse cx="283" cy="741" rx="8" ry="8" fill="#4A90D9" opacity="0.45"/>
+<line x1="265" y1="757" x2="264" y2="764" stroke="#4A90D9" stroke-width="1.5" stroke-linecap="round"/>
+<line x1="273" y1="757" x2="272" y2="764" stroke="#4A90D9" stroke-width="1.5" stroke-linecap="round"/>
+<line x1="281" y1="757" x2="280" y2="764" stroke="#4A90D9" stroke-width="1.5" stroke-linecap="round"/>
+<text x="264" y="776" font-family="monospace" font-size="10" fill="#4A4F65" text-anchor="middle">↓5°</text>
+<text x="283" y="776" font-family="monospace" font-size="10" fill="#9094AB" text-anchor="middle">↑11°</text>
+<text x="273" y="790" font-family="monospace" font-size="9" fill="#4A90D9" text-anchor="middle">light rain</text>
+
+<!-- col divider -->
+<rect x="306" y="710" width="1" height="106" fill="#2A2E42"/>
+
+<!-- WED -->
+<text x="340" y="720" font-family="monospace" font-size="10" fill="#4A4F65" text-anchor="middle">Wed 26</text>
+<circle cx="340" cy="746" r="11" fill="#E8C44A" opacity="0.5"/>
+<line x1="340" y1="730" x2="340" y2="734" stroke="#E8C44A" stroke-width="1.5" stroke-linecap="round"/>
+<line x1="340" y1="758" x2="340" y2="762" stroke="#E8C44A" stroke-width="1.5" stroke-linecap="round"/>
+<line x1="324" y1="746" x2="328" y2="746" stroke="#E8C44A" stroke-width="1.5" stroke-linecap="round"/>
+<line x1="352" y1="746" x2="356" y2="746" stroke="#E8C44A" stroke-width="1.5" stroke-linecap="round"/>
+<line x1="329" y1="735" x2="332" y2="738" stroke="#E8C44A" stroke-width="1.5" stroke-linecap="round"/>
+<line x1="348" y1="754" x2="351" y2="757" stroke="#E8C44A" stroke-width="1.5" stroke-linecap="round"/>
+<line x1="351" y1="735" x2="348" y2="738" stroke="#E8C44A" stroke-width="1.5" stroke-linecap="round"/>
+<line x1="329" y1="757" x2="332" y2="754" stroke="#E8C44A" stroke-width="1.5" stroke-linecap="round"/>
+<text x="331" y="776" font-family="monospace" font-size="10" fill="#4A4F65" text-anchor="middle">↓6°</text>
+<text x="350" y="776" font-family="monospace" font-size="10" fill="#9094AB" text-anchor="middle">↑12°</text>
+<text x="340" y="790" font-family="monospace" font-size="9" fill="#E8C44A" text-anchor="middle">clear sky</text>
+
+<!-- col divider -->
+<rect x="373" y="710" width="1" height="106" fill="#2A2E42"/>
+
+<!-- THU -->
+<text x="407" y="720" font-family="monospace" font-size="10" fill="#4A4F65" text-anchor="middle">Thu 27</text>
+<circle cx="401" cy="741" r="8" fill="#E8C44A" opacity="0.4"/>
+<ellipse cx="412" cy="749" rx="13" ry="9" fill="#9094AB" opacity="0.5"/>
+<ellipse cx="402" cy="745" rx="8" ry="8" fill="#9094AB" opacity="0.5"/>
+<ellipse cx="422" cy="744" rx="7" ry="7" fill="#9094AB" opacity="0.5"/>
+<text x="398" y="768" font-family="monospace" font-size="10" fill="#4A4F65" text-anchor="middle">↓8°</text>
+<text x="417" y="768" font-family="monospace" font-size="10" fill="#9094AB" text-anchor="middle">↑14°</text>
+<text x="407" y="782" font-family="monospace" font-size="9" fill="#9094AB" text-anchor="middle">few clouds</text>
+
+<!-- col divider -->
+<rect x="440" y="710" width="1" height="106" fill="#2A2E42"/>
+
+<!-- FRI -->
+<text x="474" y="720" font-family="monospace" font-size="10" fill="#4A4F65" text-anchor="middle">Fri 28</text>
+<ellipse cx="474" cy="746" rx="14" ry="9" fill="#4A90D9" opacity="0.45"/>
+<ellipse cx="464" cy="742" rx="9" ry="9" fill="#4A90D9" opacity="0.45"/>
+<ellipse cx="484" cy="741" rx="8" ry="8" fill="#4A90D9" opacity="0.45"/>
+<line x1="466" y1="757" x2="465" y2="764" stroke="#4A90D9" stroke-width="1.5" stroke-linecap="round"/>
+<line x1="474" y1="757" x2="473" y2="764" stroke="#4A90D9" stroke-width="1.5" stroke-linecap="round"/>
+<line x1="482" y1="757" x2="481" y2="764" stroke="#4A90D9" stroke-width="1.5" stroke-linecap="round"/>
+<text x="465" y="776" font-family="monospace" font-size="10" fill="#4A4F65" text-anchor="middle">↓4°</text>
+<text x="484" y="776" font-family="monospace" font-size="10" fill="#9094AB" text-anchor="middle">↑10°</text>
+<text x="474" y="790" font-family="monospace" font-size="9" fill="#4A90D9" text-anchor="middle">light rain</text>
+
+<!-- ═══ PAGE DOTS ═══ -->
+<circle cx="316" cy="860" r="4" fill="none" stroke="#4A4F65" stroke-width="1" style="fill:none;stroke:rgb(74, 79, 101);color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+<circle cx="334" cy="860" r="4" fill="none" stroke="#4A4F65" stroke-width="1" style="fill:none;stroke:rgb(74, 79, 101);color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+<circle cx="350" cy="860" r="5" fill="#9094AB" style="fill:rgb(144, 148, 171);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+<circle cx="366" cy="860" r="4" fill="none" stroke="#4A4F65" stroke-width="1" style="fill:none;stroke:rgb(74, 79, 101);color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+<circle cx="382" cy="860" r="4" fill="none" stroke="#4A4F65" stroke-width="1" style="fill:none;stroke:rgb(74, 79, 101);color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+</svg>

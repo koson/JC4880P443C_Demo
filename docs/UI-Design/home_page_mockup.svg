@@ -1,0 +1,101 @@
+<svg width="100%" viewBox="0 0 680 930" xmlns="http://www.w3.org/2000/svg">
+
+<!-- phone/device frame -->
+<rect x="160" y="0" width="360" height="920" rx="18" fill="#0F1117" style="fill:rgb(15, 17, 23);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+<!-- ═══ STATUS BAR  Y=0 H=30 ═══ -->
+<rect x="160" y="0" width="360" height="30" rx="0" fill="#1A1D27" style="fill:rgb(26, 29, 39);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+<rect x="160" y="0" width="360" height="30" rx="18" fill="#1A1D27" style="fill:rgb(26, 29, 39);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+<rect x="160" y="14" width="360" height="16" fill="#1A1D27" style="fill:rgb(26, 29, 39);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+<text x="178" y="20" font-family="monospace" font-size="13" fill="#9094AB" font-weight="400" style="fill:rgb(144, 148, 171);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:monospace;font-size:13px;font-weight:400;text-anchor:start;dominant-baseline:auto">Saturday 21 March</text>
+
+<!-- mqtt dot -->
+<circle cx="440" cy="15" r="5" fill="#2ECC8E" style="fill:rgb(46, 204, 142);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+<text x="450" y="20" font-family="monospace" font-size="11" fill="#2ECC8E" style="fill:rgb(46, 204, 142);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:monospace;font-size:11px;font-weight:400;text-anchor:start;dominant-baseline:auto">MQTT</text>
+
+<!-- wifi dot -->
+<circle cx="502" cy="15" r="5" fill="#2ECC8E" style="fill:rgb(46, 204, 142);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+<text x="512" y="20" font-family="monospace" font-size="11" fill="#2ECC8E" style="fill:rgb(46, 204, 142);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:monospace;font-size:11px;font-weight:400;text-anchor:start;dominant-baseline:auto">WiFi</text>
+
+<!-- ═══ WEATHER + CLOCK HERO  Y=30 H=260 ═══ -->
+<rect x="172" y="38" width="336" height="250" rx="12" fill="#1A1D27" stroke="#2A2E42" stroke-width="1" style="fill:rgb(26, 29, 39);stroke:rgb(42, 46, 66);color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+<!-- time hero -->
+<text x="196" y="108" font-family="monospace" font-size="62" fill="#F0F0F5" font-weight="400" letter-spacing="-1" style="fill:rgb(240, 240, 245);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:monospace;font-size:62px;font-weight:400;text-anchor:start;dominant-baseline:auto">20:04</text>
+
+<!-- subtle divider -->
+<rect x="188" y="122" width="310" height="1" fill="#2A2E42" style="fill:rgb(42, 46, 66);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+<!-- weather row -->
+<!-- icon circle -->
+<circle cx="212" cy="168" r="26" fill="#E8C44A" opacity="0.9" style="fill:rgb(232, 196, 74);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.9;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+<!-- temp hero -->
+<text x="252" y="185" font-family="monospace" font-size="52" fill="#F0F0F5" font-weight="400" style="fill:rgb(240, 240, 245);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:monospace;font-size:52px;font-weight:400;text-anchor:start;dominant-baseline:auto">8.2°</text>
+
+<!-- condition — right of temp, vertically centred -->
+<text x="358" y="162" font-family="monospace" font-size="18" fill="#9094AB" style="fill:rgb(144, 148, 171);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:monospace;font-size:18px;font-weight:400;text-anchor:start;dominant-baseline:auto">Partly</text>
+<text x="358" y="184" font-family="monospace" font-size="18" fill="#9094AB" style="fill:rgb(144, 148, 171);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:monospace;font-size:18px;font-weight:400;text-anchor:start;dominant-baseline:auto">cloudy</text>
+
+<!-- subtle divider -->
+<rect x="188" y="208" width="310" height="1" fill="#2A2E42" style="fill:rgb(42, 46, 66);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+<!-- bottom of weather card — one line only -->
+<text x="196" y="274" font-family="monospace" font-size="16" fill="#4A4F65" style="fill:rgb(74, 79, 101);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:monospace;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">↓ 7°   ↑ 11°   Rochdale</text>
+
+<!-- ═══ ENERGY HERO  Y=300 H=200 ═══ -->
+<rect x="172" y="298" width="336" height="190" rx="12" fill="#1A1D27" stroke="#2A2E42" stroke-width="1" style="fill:rgb(26, 29, 39);stroke:rgb(42, 46, 66);color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+<text x="196" y="330" font-family="monospace" font-size="13" fill="#4A4F65" style="fill:rgb(74, 79, 101);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:monospace;font-size:13px;font-weight:400;text-anchor:start;dominant-baseline:auto">whole-house power</text>
+
+<!-- watts hero -->
+<text x="196" y="410" font-family="monospace" font-size="72" fill="#4A90D9" font-weight="400" letter-spacing="-2" style="fill:rgb(74, 144, 217);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:monospace;font-size:72px;font-weight:400;text-anchor:start;dominant-baseline:auto">553</text>
+<text x="390" y="410" font-family="monospace" font-size="22" fill="#4A90D9" style="fill:rgb(74, 144, 217);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:monospace;font-size:22px;font-weight:400;text-anchor:start;dominant-baseline:auto">W</text>
+
+<!-- subtle divider -->
+<rect x="188" y="420" width="310" height="1" fill="#2A2E42" style="fill:rgb(42, 46, 66);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+<!-- one supporting line only -->
+<text x="196" y="470" font-family="monospace" font-size="16" fill="#4A4F65" style="fill:rgb(74, 79, 101);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:monospace;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">9.9 kWh today</text>
+
+<!-- ═══ STATUS DOTS ROW  Y=502 H=160 ═══ -->
+<rect x="172" y="500" width="336" height="155" rx="12" fill="#1A1D27" stroke="#2A2E42" stroke-width="1" style="fill:rgb(26, 29, 39);stroke:rgb(42, 46, 66);color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+<!-- 4 equal columns: 172 + (0,84,168,252) -->
+
+<!-- Boiler — warm active -->
+<rect x="180" y="508" width="76" height="139" rx="8" fill="#1E1A10" stroke="#3A2E10" stroke-width="1" style="fill:rgb(30, 26, 16);stroke:rgb(58, 46, 16);color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+<circle cx="218" cy="534" r="10" fill="#E8C44A" style="fill:rgb(232, 196, 74);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+<text x="218" y="572" font-family="monospace" font-size="14" fill="#F0F0F5" text-anchor="middle" style="fill:rgb(240, 240, 245);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:monospace;font-size:14px;font-weight:400;text-anchor:middle;dominant-baseline:auto">Boiler</text>
+<text x="218" y="592" font-family="monospace" font-size="13" fill="#E8834A" text-anchor="middle" style="fill:rgb(232, 131, 74);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:monospace;font-size:13px;font-weight:400;text-anchor:middle;dominant-baseline:auto">Heating</text>
+
+<!-- Internet — teal active -->
+<rect x="264" y="508" width="76" height="139" rx="8" fill="#121E13" stroke="#1A3020" stroke-width="1" style="fill:rgb(18, 30, 19);stroke:rgb(26, 48, 32);color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+<circle cx="302" cy="534" r="10" fill="#2ECC8E" style="fill:rgb(46, 204, 142);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+<text x="302" y="572" font-family="monospace" font-size="14" fill="#F0F0F5" text-anchor="middle" style="fill:rgb(240, 240, 245);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:monospace;font-size:14px;font-weight:400;text-anchor:middle;dominant-baseline:auto">Internet</text>
+<text x="302" y="592" font-family="monospace" font-size="13" fill="#2ECC8E" text-anchor="middle" style="fill:rgb(46, 204, 142);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:monospace;font-size:13px;font-weight:400;text-anchor:middle;dominant-baseline:auto">Online</text>
+
+<!-- Lights — warm, 3 on -->
+<rect x="348" y="508" width="76" height="139" rx="8" fill="#1E1A10" stroke="#3A2E10" stroke-width="1" style="fill:rgb(30, 26, 16);stroke:rgb(58, 46, 16);color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+<circle cx="386" cy="534" r="10" fill="#E8C44A" style="fill:rgb(232, 196, 74);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+<text x="386" y="572" font-family="monospace" font-size="14" fill="#F0F0F5" text-anchor="middle" style="fill:rgb(240, 240, 245);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:monospace;font-size:14px;font-weight:400;text-anchor:middle;dominant-baseline:auto">Lights</text>
+<text x="386" y="592" font-family="monospace" font-size="13" fill="#E8834A" text-anchor="middle" style="fill:rgb(232, 131, 74);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:monospace;font-size:13px;font-weight:400;text-anchor:middle;dominant-baseline:auto">3 on</text>
+
+<!-- Rain — dim, dry -->
+<rect x="432" y="508" width="76" height="139" rx="8" fill="#1A1D27" stroke="#2A2E42" stroke-width="1" style="fill:rgb(26, 29, 39);stroke:rgb(42, 46, 66);color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+<circle cx="470" cy="534" r="10" fill="#4A4F65" style="fill:rgb(74, 79, 101);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+<text x="470" y="572" font-family="monospace" font-size="14" fill="#9094AB" text-anchor="middle" style="fill:rgb(144, 148, 171);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:monospace;font-size:14px;font-weight:400;text-anchor:middle;dominant-baseline:auto">Rain</text>
+<text x="470" y="592" font-family="monospace" font-size="13" fill="#4A4F65" text-anchor="middle" style="fill:rgb(74, 79, 101);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:monospace;font-size:13px;font-weight:400;text-anchor:middle;dominant-baseline:auto">Dry</text>
+
+<!-- ═══ PAGE INDICATOR DOTS ═══ -->
+<circle cx="316" cy="690" r="5" fill="#9094AB" style="fill:rgb(144, 148, 171);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+<circle cx="334" cy="690" r="4" fill="none" stroke="#4A4F65" stroke-width="1" style="fill:none;stroke:rgb(74, 79, 101);color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+<circle cx="350" cy="690" r="4" fill="none" stroke="#4A4F65" stroke-width="1" style="fill:none;stroke:rgb(74, 79, 101);color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+<circle cx="366" cy="690" r="4" fill="none" stroke="#4A4F65" stroke-width="1" style="fill:none;stroke:rgb(74, 79, 101);color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+<circle cx="382" cy="690" r="4" fill="none" stroke="#4A4F65" stroke-width="1" style="fill:none;stroke:rgb(74, 79, 101);color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+<!-- swipe hint -->
+<text x="340" y="720" font-family="monospace" font-size="11" fill="#4A4F65" text-anchor="middle" style="fill:rgb(74, 79, 101);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:monospace;font-size:11px;font-weight:400;text-anchor:middle;dominant-baseline:auto">swipe for detail</text>
+
+</svg>

@@ -1,5 +1,5 @@
 # ESP32-P4 Smart Home Dashboard — Design Specification
-## Version 1.2  |  Portrait 480 × 800  |  LVGL v9
+## Version 1.3  |  Portrait 480 × 800  |  LVGL v9
 
 ---
 
@@ -9,106 +9,19 @@
 - **Framework**: LVGL v9, FreeRTOS
 - **Data source**: MQTT via mosquitto broker at 192.168.124.4
 - **Middleware**: Node-RED bridges OpenWeatherMap and MQTT
-- **Touch**: GT991,  swipe gesture for page navigation
+- **Touch**: To be added — swipe gesture for page navigation
 
 ---
 
 ## 2. Architecture
 
-### Screen Model — Wide Canvas with Viewport (v1.2)
+### Screen Model
+All pages are created once at boot as `lv_obj_t` screen objects and kept alive in RAM. No rebuilding on page switch.
 
-All pages live side by side on one wide `lv_obj_t` canvas created at boot.
-The visible display is a 480px viewport sliding over a 2400px wide canvas.
-This is the same model used by the LVGL9 music player demo — finger tracking
-during swipe, snap to page boundary on release.
-
-```
-RAM layout:
-
-  canvas  2400 × 800 px  (N_PAGES × SCR_W)
-  ┌──────────┬──────────┬──────────┬──────────┬──────────┐
-  │  page 0  │  page 1  │  page 2  │  page 3  │  page 4  │
-  │   Home   │ Heating  │ Weather  │ Controls │  System  │
-  │  480×800 │  480×800 │  480×800 │  480×800 │  480×800 │
-  └──────────┴──────────┴──────────┴──────────┴──────────┘
-       ↑
-  viewport (480px wide) slides left/right over canvas
-  all widgets exist at fixed absolute X positions
-  MQTT updates all handles regardless of viewport position
-```
-
-**Key LVGL flags — the two lines that make it work:**
 ```c
-lv_obj_add_flag(canvas, LV_OBJ_FLAG_SCROLL_ONE);
-lv_obj_set_scroll_snap_x(canvas, LV_SCROLL_SNAP_CENTER);
-```
-
-- `SCROLL_ONE` — one swipe gesture moves exactly one page, cannot fling past two
-- `SCROLL_SNAP_CENTER` — on finger release, snaps to centre of nearest page child
-
-**Behaviour during swipe:**
-```
-finger down + drag   → viewport follows finger in real time
-                        neighbouring page slides in from edge
-                        half-and-half transition visible mid-swipe
-                        (identical to LVGL9 music player demo)
-
-finger release       → snaps to nearest page centre
-                        smooth deceleration animation
-                        always lands on complete page content
-
-fast fling           → SCROLL_ONE limits to one page per gesture
-                        cannot accidentally skip pages
-```
-
-### Canvas Setup
-```c
-#define N_PAGES  5
-#define CANVAS_W (SCR_W * N_PAGES)   // 2400 px
-
-static lv_obj_t *g_canvas;
-static lv_obj_t *g_pages[N_PAGES];
-static int32_t   s_cur_page = 0;
-
-void build_canvas(lv_obj_t *scr)
-{
-    g_canvas = lv_obj_create(scr);
-    lv_obj_set_size(g_canvas, SCR_W, SCR_H);    // viewport = screen size
-    lv_obj_set_pos(g_canvas, 0, 0);
-    lv_obj_set_style_bg_color(g_canvas, C_BG, 0);
-    lv_obj_set_style_bg_opa(g_canvas, LV_OPA_COVER, 0);
-    lv_obj_set_style_pad_all(g_canvas, 0, 0);
-    lv_obj_set_style_border_width(g_canvas, 0, 0);
-
-    // scroll behaviour
-    lv_obj_set_scroll_dir(g_canvas, LV_DIR_HOR);
-    lv_obj_set_scrollbar_mode(g_canvas, LV_SCROLLBAR_MODE_OFF);
-    lv_obj_add_flag(g_canvas, LV_OBJ_FLAG_SCROLL_ONE);
-    lv_obj_set_scroll_snap_x(g_canvas, LV_SCROLL_SNAP_CENTER);
-
-    // create page children at fixed X positions
-    for (int i = 0; i < N_PAGES; i++) {
-        g_pages[i] = lv_obj_create(g_canvas);
-        lv_obj_set_size(g_pages[i], SCR_W, SCR_H);
-        lv_obj_set_pos(g_pages[i], i * SCR_W, 0);
-        lv_obj_set_style_bg_color(g_pages[i], C_BG, 0);
-        lv_obj_set_style_bg_opa(g_pages[i], LV_OPA_COVER, 0);
-        lv_obj_set_style_pad_all(g_pages[i], 0, 0);
-        lv_obj_set_style_border_width(g_pages[i], 0, 0);
-        lv_obj_clear_flag(g_pages[i], LV_OBJ_FLAG_SCROLLABLE);
-    }
-
-    // page-change event — update dot indicator
-    lv_obj_add_event_cb(g_canvas, on_scroll_end, LV_EVENT_SCROLL_END, NULL);
-}
-
-static void on_scroll_end(lv_event_t *e)
-{
-    lv_obj_t *canvas = lv_event_get_target(e);
-    int32_t x = lv_obj_get_scroll_x(canvas);
-    s_cur_page = LV_CLAMP(0, (x + SCR_W / 2) / SCR_W, N_PAGES - 1);
-    update_page_dots(s_cur_page);
-}
+lv_obj_t *g_screens[N_PAGES];   // all created at boot
+lv_screen_load_anim(g_screens[n], LV_SCR_LOAD_ANIM_MOVE_LEFT, 200, 0, false);
+// false = do NOT delete old screen — keeps it alive in RAM
 ```
 
 ### MQTT → UI Data Flow
@@ -121,25 +34,34 @@ mqtt_drain_cb()                      ← LVGL task, drains queue completely
     ↓  dispatch by topic string
 dashboard_ui_update_*()              ← updates widget handles directly
     ↓
-widget handles (g_lbl_*, g_tile_*)   ← exist at fixed positions on canvas
-                                     ← updated whether in viewport or not
+widget handles (g_lbl_*, g_tile_*)   ← exist permanently in RAM
+                                     ← updated whether screen visible or not
 ```
 
 - No mutexes needed — queue is the only crossing point between domains
 - All UI updates happen inside LVGL task — thread safe by design
-- Off-viewport widgets update silently — page shows fresh data instantly on swipe
-- No gesture detection code needed — LVGL scroll engine handles everything
+- Off-screen widgets update silently — page shows fresh data instantly on swipe
 
-### Comparison: Old Model vs New Model
+### Page Navigation
+```c
+#define N_PAGES 5
+
+void dashboard_go_to_page(int direction)  // +1 next, -1 prev
+{
+    if (s_anim_in_progress) return;       // debounce guard
+    s_anim_in_progress = true;
+    s_cur_page = (s_cur_page + N_PAGES + direction) % N_PAGES;
+    lv_screen_load_anim(g_screens[s_cur_page],
+        direction > 0 ? LV_SCR_LOAD_ANIM_MOVE_LEFT
+                      : LV_SCR_LOAD_ANIM_MOVE_RIGHT,
+        200, 0, false);
+    lv_timer_create(anim_done_cb, 200, NULL);  // clears flag after 200ms
+    update_page_dots(s_cur_page);
+}
 ```
-Old (v1.1)                          New (v1.2)
-────────────────────────────────────────────────────────────
-5 × lv_obj_create(NULL) screens     5 × lv_obj_create(canvas) pages
-lv_screen_load_anim()               LVGL scroll engine (automatic)
-lv_indev gesture detection          not needed
-manual debounce guard               not needed — SCROLL_ONE handles it
-discrete jump between pages         fluid finger-tracked pan + snap
-```
+
+Touch swipe detected via `lv_indev_get_gesture_dir()` in touch read callback.
+Gesture threshold: `lv_indev_set_gesture_limit(indev, 20)` px.
 
 ---
 
@@ -311,7 +233,8 @@ No min/max, no kWh detail, no power factor — all on detail pages.
 │         20:04                   │  48px  C_PRI     FONT_HERO
 │  [icon]  8.2°    Partly cloudy  │  48px  C_PRI  +  20px C_SEC
 │                                 │
-│  ↓ 7°  ↑ 11°   Rochdale        │  14px  C_DIM     one line only
+│  ↓ 7°  ↑ 11°   Rochdale        │  14px  C_DIM     OWM min/max
+│  Outdoors  7.2°                 │  16px  C_BLUE    DS18B20 ground truth
 │                                 │
 ├─────────────────────────────────┤
 │  whole-house power              │  14px  C_DIM
@@ -327,6 +250,12 @@ No min/max, no kWh detail, no power factor — all on detail pages.
          ●  ○  ○  ○  ○   page dots
 ```
 
+### Outdoor temperature — two sources
+The home page shows `/TEMP/outdoors` (DS18B20 physical sensor) in `C_BLUE` as the
+ground truth measurement. This is distinct from the OWM forecast temperature shown
+above it. Both visible together — the user can see at a glance if forecast and
+reality agree.
+
 ### Status Tiles (bottom row)
 - 4 equal tiles, each showing: dot (16px) + one word (20px)
 - No numbers — colour tells the story from distance
@@ -335,13 +264,18 @@ No min/max, no kWh detail, no power factor — all on detail pages.
 - Lights: "3 on" / "All off" — warm/dim
 - Rain: Dry / Light / Rain / Heavy — dim/sec/blue/heavy
 
-### What is NOT on home page
+### Home page MQTT topics (additions)
+```
+/TEMP/outdoors   float °C   → outdoor temp  C_BLUE  below OWM min/max line
+```
 - Min/max temp → weather page
 - Humidity, wind, pressure → weather page
 - kWh yesterday, power factor, voltage → energy page (future)
 - Boost button → heating page
 - Individual light states → controls page
 - RTT exact value → system page
+- Individual room temperatures → heating page
+- Downstairs / upstairs breakdown → heating page
 
 ---
 
@@ -371,20 +305,77 @@ Button 2 — Boost (conditional):
           Disabled reason shown: "not available — boiler already running"
 ```
 
+### Layout
+```
+┌─────────────────────────────────┐
+│  [flame]   Heating              │  48px  C_WARM  hero
+│  Boiler firing  ·  Winter mode  │  16px  C_SEC
+│  since 06:14  · last ran 3h ago │  14px  C_DIM
+│  target 20°     current 18.4°   │  14px  C_DIM
+├─────────────────────────────────┤
+│  [  Winter  ]  [  Summer  ]     │  mode toggle — button 1
+├─────────────────────────────────┤
+│  [  Tap for 1 hr boost  ]       │  boost — button 2 (conditional)
+├─────────────────────────────────┤
+│  Temperatures                   │  14px  C_DIM  section label
+│                                 │
+│  Downstairs      18.9°          │  16px  C_PRI
+│  Upstairs        16.4°          │  16px  C_PRI
+│  Loft            12.1°          │  16px  C_SEC  (less critical)
+│  Outdoors         7.2°          │  16px  C_BLUE (external — distinct)
+└─────────────────────────────────┘
+```
+
+### DS18B20 Temperature Sensors — Node-RED Aggregation
+
+Individual sensors are aggregated in Node-RED before publishing to MQTT.
+The UI never sees individual sensor addresses — only clean named values.
+
+```
+Physical sensors                Node-RED avg        MQTT topic
+────────────────────────────────────────────────────────────────
+living, kitchen, hall, dining → average         → /TEMP/downstairs
+bedroom1, bedroom2, bedroom3  → average         → /TEMP/upstairs
+loft                          → direct          → /TEMP/loft
+front outdoor, back outdoor   → average         → /TEMP/outdoors
+```
+
+Adding or moving a sensor = Node-RED change only. No UI code changes.
+
+### Temperature colour rules
+```
+Downstairs / Upstairs
+  ≥ 20°    C_TEAL      at target
+  ≥ 17°    C_PRI       acceptable
+  < 17°    C_WARM      cool — boiler should respond
+
+Loft
+  always   C_SEC       informational only — no target
+
+Outdoors
+  always   C_BLUE      external measurement — semantically distinct
+                       cross-reference with OWM on weather page
+```
+
 ### MQTT Topics
 ```
 Subscribe:
-  /BOI/power    "1"/"0"     → hero state
-  /BOI/mode     "winter"/"summer" → mode badge + button 2 enable
+  /BOI/power         "1"/"0"        → hero state
+  /BOI/mode          "winter"/"summer" → mode badge + button 2 enable
+  /TEMP/downstairs   float °C       → temperature row
+  /TEMP/upstairs     float °C       → temperature row
+  /TEMP/loft         float °C       → temperature row
+  /TEMP/outdoors     float °C       → temperature row
+                                      also used on home page
 
 Publish:
-  /BOI/mode     "winter"/"summer" → button 1
-  /BOI/home     "1"              → button 2 (boost)
+  /BOI/mode          "winter"/"summer" → button 1
+  /BOI/home          "1"              → button 2 (boost)
 ```
 
 ### Supporting detail (below hero divider)
 ```
-Boiler firing  ·  Winter mode     16px  C_SEC
+Boiler firing  ·  Winter mode        16px  C_SEC
 since 06:14  ·  last ran 3 hrs ago   14px  C_DIM
 target 20°   current 18.4°           14px  C_DIM
 ```
@@ -424,6 +415,17 @@ sunrise     |  sunset
 All equal weight — 20px `C_PRI` values, 12px `C_DIM` labels
 - Rain uses `theme_rain_color()` threshold
 - Sunrise `C_GOLD`, sunset `C_WARM`
+
+### DS18B20 cross-reference on weather page
+The `/TEMP/outdoors` DS18B20 value is shown alongside the OWM temperature
+as a ground truth cross-check. If they diverge significantly, the OWM
+location calibration or the sensor may need attention — useful signal for
+the Node-RED predictive heating algorithm.
+```
+OWM forecast    7.5°   ← API prediction
+DS18B20 actual  7.2°   ← physical sensor
+△ 0.3°                 ← good agreement → forecast trustworthy
+```
 
 ### 5-Day Forecast Strip
 Compact 5-column card below the stat grid. One column per day.
@@ -730,21 +732,23 @@ lv_obj_set_style_size(chart, 0, LV_PART_INDICATOR);  // line only, no dots
 ```c
 void dashboard_ui_create(lv_display_t *disp)
 {
-    lv_obj_t *scr = lv_display_get_screen_active(disp);
-    lv_obj_set_style_bg_color(scr, C_BG, 0);
+    // 1. Create all screens
+    for (int i = 0; i < N_PAGES; i++) {
+        g_screens[i] = lv_obj_create(NULL);
+        lv_obj_set_style_bg_color(g_screens[i], C_BG, 0);
+        lv_obj_set_style_bg_opa(g_screens[i], LV_OPA_COVER, 0);
+        lv_obj_clear_flag(g_screens[i], LV_OBJ_FLAG_SCROLLABLE);
+    }
 
-    // 1. Create wide canvas + all page children
-    build_canvas(scr);           // sets up g_canvas and g_pages[0..4]
+    // 2. Build all pages — all widget handles assigned before any MQTT arrives
+    build_home_page(g_screens[0]);
+    build_heating_page(g_screens[1]);
+    build_weather_page(g_screens[2]);
+    build_controls_page(g_screens[3]);
+    build_system_page(g_screens[4]);
 
-    // 2. Build all page content — all widget handles assigned before any MQTT arrives
-    build_home_page(g_pages[0]);
-    build_heating_page(g_pages[1]);
-    build_weather_page(g_pages[2]);
-    build_controls_page(g_pages[3]);
-    build_system_page(g_pages[4]);
-
-    // 3. Scroll to first page (no animation at boot)
-    lv_obj_scroll_to_x(g_canvas, 0, LV_ANIM_OFF);
+    // 3. Show first screen
+    lv_screen_load(g_screens[0]);
 
     // 4. Start timers AFTER all handles exist
     lv_timer_create(mqtt_drain_cb,  100,  NULL);
@@ -768,11 +772,13 @@ void dashboard_ui_create(lv_display_t *disp)
 
 6. **Correct by construction** — MQTT queue is the only crossing point between async MQTT domain and synchronous LVGL domain. No mutexes needed. Actor model / Erlang philosophy.
 
-7. **Wide canvas viewport** — all pages side by side on one 2400×800 canvas. Viewport (480px) slides over it. Finger-tracked during swipe, snaps to page on release. Identical to LVGL9 music player demo. No gesture detection code needed — LVGL scroll engine handles everything natively.
+7. **All in RAM** — no page rebuilding. Off-screen widgets update silently. Instant display on swipe. Works because ESP32-P4 has sufficient RAM.
 
 8. **Theme as single source of truth** — dashboard_theme.h contains all colours, fonts, layout constants, and threshold helper functions. New pages just `#include "dashboard_theme.h"`.
 
 9. **Empathy drives hierarchy** — every layout decision starts from "what does the person standing here need to know first?" Not what data is available, but what is useful at this moment, at this distance. Progressive disclosure is the answer: colour from 3 metres, numbers at arm's length, detail on demand.
+
+10. **Aggregate at the data layer, abstract at the UI layer** — Node-RED averages individual DS18B20 sensors into named zones (Downstairs, Upstairs, Loft, Outdoors) before publishing to MQTT. The UI consumes clean named values. Adding or relocating a sensor is a Node-RED change only — zero UI code changes. Same principle applies to any future sensor aggregation.
 
 ---
 
@@ -792,11 +798,14 @@ Get `SCROLL_ONE` + `SCROLL_SNAP_CENTER` feeling right first — that is the vero
 
 ---
 
-*v1.2 — Architecture revised: replaced 5 × lv_screen model with single wide canvas (2400×800)
-viewport model. Pages are children at fixed X positions. LVGL scroll engine handles finger
-tracking and snap natively via LV_OBJ_FLAG_SCROLL_ONE + LV_SCROLL_SNAP_CENTER.
-No gesture detection code required. Matches LVGL9 music player demo pattern.
-Boot sequence updated. Design principle 7 updated, principle 9 added (empathy).*
+*v1.3 — DS18B20 temperature sensors added. Node-RED aggregates individual sensors into four
+named zones: Downstairs, Upstairs, Loft, Outdoors. MQTT topics: /TEMP/downstairs,
+/TEMP/upstairs, /TEMP/loft, /TEMP/outdoors. Heating page updated with temperature
+section below boost button. Home page updated with /TEMP/outdoors ground truth reading
+alongside OWM forecast temp. Weather page cross-reference note added. Temperature
+colour rules defined. Design principles 9 (empathy) and 10 (aggregate at data layer)
+added. Architecture updated to wide canvas viewport model (LVGL9 music player pattern),
+boot sequence updated, old screen-switching model replaced.*
 
 *v1.1 — Added 5-day forecast strip to Page 2 (Weather): layout, icon rules, Node-RED pipeline,
 summarisation function node, and MQTT topic map for `/OWM/fc/*` topics.*

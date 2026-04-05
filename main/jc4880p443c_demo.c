@@ -318,10 +318,11 @@ static lv_display_t *lvgl_display_init(esp_lcd_panel_handle_t panel)
     lv_display_t *disp = lv_display_create(DISPLAY_H_RES, DISPLAY_V_RES);
     assert(disp);
 
+    // ใช้ PSRAM แทน DMA internal RAM (ESP-Hosted ใช้ DMA memory เยอะแล้ว)
     void *buf1 = heap_caps_malloc(LVGL_BUFFER_SIZE * sizeof(lv_color_t),
-                                   MALLOC_CAP_DMA);
+                                   MALLOC_CAP_SPIRAM | MALLOC_CAP_8BIT);
     void *buf2 = heap_caps_malloc(LVGL_BUFFER_SIZE * sizeof(lv_color_t),
-                                   MALLOC_CAP_DMA);
+                                   MALLOC_CAP_SPIRAM | MALLOC_CAP_8BIT);
     assert(buf1 && buf2);
 
     lv_display_set_buffers(disp, buf1, buf2,

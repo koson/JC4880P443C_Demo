@@ -345,3 +345,10 @@ If you are porting from an older project or following older tutorials, these are
 ## Licence
 
 MIT. Do whatever you like with it. If it saves you the hours of confusion it took to put together, that is more than enough.
+
+
+
+Please change:
+1. Component config → ESP-Hosted → Slave target → ESP32-C6
+2. Component config → ESP-Hosted → Transport → SDIO
+3. Save and exit

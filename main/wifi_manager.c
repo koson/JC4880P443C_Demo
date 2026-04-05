@@ -181,8 +181,35 @@ esp_err_t wifi_manager_start(void)
     esp_netif_create_default_wifi_sta();
 
     /* ── WiFi driver init ────────────────────────────────────────────
-     * WIFI_INIT_CONFIG_DEFAULT() fills in all driver defaults.        */
-    wifi_init_config_t cfg = WIFI_INIT_CONFIG_DEFAULT();
+     * Manual WiFi initialization config for ESP32-P4 with remote WiFi */
+    wifi_init_config_t cfg = {
+        .osi_funcs = &g_wifi_osi_funcs,
+        .wpa_crypto_funcs = g_wifi_default_wpa_crypto_funcs,
+        .static_rx_buf_num = 10,
+        .dynamic_rx_buf_num = 32,
+        .tx_buf_type = 1,  // Dynamic TX buffer
+        .static_tx_buf_num = 0,
+        .dynamic_tx_buf_num = 32,
+        .rx_mgmt_buf_type = 1,  //Dynamic management RX buffer
+        .rx_mgmt_buf_num = 5,
+        .cache_tx_buf_num = 0,
+        .csi_enable = 0,
+        .ampdu_rx_enable = 1,
+        .ampdu_tx_enable = 1,
+        .amsdu_tx_enable = 0,
+        .nvs_enable = 1,
+        .nano_enable = 0,
+        .rx_ba_win = 6,
+        .wifi_task_core_id = 0,
+        .beacon_max_len = 752,
+        .mgmt_sbuf_num = 32,
+        .feature_caps = 0,
+        .sta_disconnected_pm = 1,
+        .espnow_max_encrypt_num = 7,
+        .tx_hetb_queue_num = 3,
+        .dump_hesigb_enable = 0,
+        .magic = 0x1F2F3F4F
+    };
     ESP_ERROR_CHECK(esp_wifi_init(&cfg));
 
     /* ── Register event handlers ─────────────────────────────────────
